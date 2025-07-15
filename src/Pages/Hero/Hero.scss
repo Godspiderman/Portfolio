@@ -1,0 +1,448 @@
+// Variables
+$primary: #00f0ff;
+$secondary: #ff00e4;
+$dark: #0a0a1a;
+$light: rgba(255, 255, 255, 0.9);
+$glass-bg: rgba(255, 255, 255, 0.05);
+$glass-border: rgba(255, 255, 255, 0.1);
+
+// Breakpoints
+$mobile: 320px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1440px;
+
+// Mixins
+@mixin glass-effect {
+  background: $glass-bg;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid $glass-border;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Base Styles
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: $light;
+
+  @include respond-to($tablet) {
+    padding: 2rem;
+  }
+
+  &__tech-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    z-index: 1;
+  }
+
+  &__tech-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__tech-icon {
+    position: absolute;
+    top: var(--y-pos);
+    left: var(--x-pos);
+    font-size: var(--size);
+    font-weight: 700;
+    color: hsla(var(--hue), 80%, 60%, 0.8);
+    opacity: 0;
+    animation: 
+      floatIn 1s var(--delay) forwards ease-out,
+      floatAround var(--duration) var(--delay) infinite ease-in-out;
+    text-shadow: 0 0 8px currentColor;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    z-index: 2;
+
+    &::before {
+      content: attr(data-tech);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: transparent;
+      -webkit-text-stroke: 1px hsla(var(--hue), 80%, 60%, 0.3);
+      z-index: -1;
+    }
+
+    @include respond-to($tablet) {
+      font-size: calc(var(--size) * 1.2);
+    }
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 3;
+
+    @include respond-to($laptop) {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  &__glass-card {
+    @include glass-effect;
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: transform 0.5s ease;
+    
+    &:hover {
+      transform: translateY(-10px);
+    }
+
+    @include respond-to($tablet) {
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    @include respond-to($laptop) {
+      padding: 3rem;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: linear-gradient(90deg, $primary, $secondary);
+    color: $dark;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.8s 0.2s both;
+
+    @include respond-to($tablet) {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    
+    @include respond-to($tablet) {
+      margin-bottom: 1.5rem;
+    }
+    
+    &-line {
+      display: block;
+      
+      &--glitch {
+        position: relative;
+        color: $primary;
+        
+        &::before {
+          content: attr(data-text);
+          position: absolute;
+          left: -2px;
+          text-shadow: 2px 0 $secondary;
+          clip: rect(0, 900px, 0, 0);
+          animation: glitch-effect 3s infinite alternate-reverse;
+        }
+      }
+    }
+  }
+
+  &__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    max-width: 100%;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary, $secondary);
+      border-radius: 3px;
+    }
+
+    @include respond-to($tablet) {
+      font-size: 1.2rem;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+
+    @include respond-to($laptop) {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__cta-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    @include respond-to($tablet) {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+
+  &__cta {
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+    font-size: 0.9rem;
+    
+    span {
+      position: relative;
+      z-index: 2;
+    }
+    
+    &--primary {
+      background: linear-gradient(90deg, $primary, darken($primary, 10%));
+      color: $dark;
+      
+      &:hover {
+        box-shadow: 0 0 20px rgba($primary, 0.5);
+      }
+    }
+    
+    &--secondary {
+      background: transparent;
+      color: $light;
+      border: 2px solid rgba($light, 0.3);
+      
+      &:hover {
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+    
+    &-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, $secondary, darken($secondary, 10%));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+    
+    &:hover &-hover {
+      opacity: 1;
+    }
+
+    @include respond-to($tablet) {
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+  }
+
+  &__hologram {
+    display: none;
+
+    @include respond-to($laptop) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+  }
+
+  &__hologram-container {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    animation: hologram-float 6s infinite ease-in-out;
+    
+    @include respond-to($laptop) {
+      width: 350px;
+    }
+    
+    @include respond-to($desktop) {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  &__profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    // filter: contrast(110%) brightness(110%);
+  }
+
+  &__hologram-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba($primary, 0.1) 0%, transparent 70%);
+    box-shadow: 
+      0 0 60px rgba($primary, 0.3),
+      inset 0 0 60px rgba($primary, 0.3);
+    z-index: 1;
+    animation: hologram-pulse 3s infinite alternate;
+  }
+
+  &__hologram-grid {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: 
+      radial-gradient(circle at center, transparent 95%, rgba($primary, 0.1) 100%),
+      linear-gradient(0deg, transparent 49%, rgba($primary, 0.1) 50%, transparent 51%),
+      linear-gradient(90deg, transparent 49%, rgba($primary, 0.1) 50%, transparent 51%);
+    background-size: 50px 50px;
+    z-index: 3;
+    opacity: 0.5;
+    animation: hologram-rotate 20s infinite linear;
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 4;
+    color: $primary;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse 2s infinite ease-in-out;
+
+    @include respond-to($tablet) {
+      bottom: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+    }
+  }
+
+  &__scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, $primary, transparent);
+    margin-bottom: 0.5rem;
+
+    @include respond-to($tablet) {
+      height: 50px;
+    }
+  }
+}
+
+// Animations (keep the same as before)
+@keyframes floatIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.8); 
+  }
+  to { 
+    opacity: 0.9; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+@keyframes floatAround {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg); 
+  }
+  25% { 
+    transform: translate(5px, 5px) rotate(2deg); 
+  }
+  50% { 
+    transform: translate(-5px, 5px) rotate(-2deg); 
+  }
+  75% { 
+    transform: translate(5px, -5px) rotate(2deg); 
+  }
+}
+
+@keyframes glitch-effect {
+  0% { clip: rect(30px, 9999px, 20px, 0); }
+  10% { clip: rect(10px, 9999px, 80px, 0); }
+  20% { clip: rect(50px, 9999px, 30px, 0); }
+  30% { clip: rect(20px, 9999px, 60px, 0); }
+  40% { clip: rect(40px, 9999px, 70px, 0); }
+  50% { clip: rect(70px, 9999px, 50px, 0); }
+  60% { clip: rect(10px, 9999px, 30px, 0); }
+  70% { clip: rect(80px, 9999px, 40px, 0); }
+  80% { clip: rect(60px, 9999px, 20px, 0); }
+  90% { clip: rect(30px, 9999px, 70px, 0); }
+  100% { clip: rect(70px, 9999px, 10px, 0); }
+}
+
+@keyframes hologram-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes hologram-pulse {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+@keyframes hologram-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
