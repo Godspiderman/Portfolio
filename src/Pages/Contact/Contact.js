@@ -110,6 +110,7 @@ const Contact = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
+              {/* Illustration can be added here */}
             </motion.div>
             
             <div className="contact__methods">
