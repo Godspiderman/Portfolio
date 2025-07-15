@@ -57,8 +57,8 @@ const Contact = () => {
     {
       icon: <FaWhatsapp className="contact__icon" />,
       title: "WhatsApp",
-      info: "+91 6382100595",
-      link: "https://wa.me/916382100595",
+      info: "+91 6382100596",
+      link: "https://wa.me/916382100596",
       action: "Chat Now"
     },
     {
@@ -71,7 +71,7 @@ const Contact = () => {
     {
       icon: <FaLinkedin className="contact__icon" />,
       title: "LinkedIn",
-      info: "linkedin.com/in/jeyaseelan-b-jm112002",
+      info: "Jeyaseelan B",
       link: "https://www.linkedin.com/in/jeyaseelan-b-jm112002",
       action: "Connect"
     }
