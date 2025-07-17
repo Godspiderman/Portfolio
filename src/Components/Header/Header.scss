@@ -88,7 +88,7 @@ $gradient-primary-horizontal: linear-gradient(90deg, $primary, $accent);
     align-items: center;
     margin: 0 auto;
     padding: 0 1.5rem;
-    max-width: 1440px;
+    width: 90%;
     position: relative;
     
     @include respond-to(tablet) {

@@ -116,17 +116,18 @@ const Hero = () => {
 
 
         <div className="hero__hologram">
-          <div className="hero__hologram-container">
-            <img
-              src={require("../../Images/IMG20250205101458.jpg")}
-              alt="Holographic Profile"
-              className="hero__profile-image"
-            />
-            <div className="hero__hologram-effect"></div>
-            <div className="hero__hologram-grid"></div>
-          </div>
-
-        </div>
+  <div className="hero__hologram-container">
+    <div className="hero__hologram-inner">
+      <img
+        src={require("../../Images/IMG20250205101458.jpg")}
+        alt="Holographic Profile"
+        className="hero__profile-image"
+      />
+      <div className="hero__hologram-effect"></div>
+      <div className="hero__hologram-grid"></div>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

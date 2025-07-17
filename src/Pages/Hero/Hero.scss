@@ -281,54 +281,101 @@ $desktop: 1440px;
 
   &__hologram {
     display: none;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    padding: 2rem;
+
+    @include respond-to($tablet) {
+      min-height: 400px;
+    }
 
     @include respond-to($laptop) {
       display: flex;
       justify-content: center;
       align-items: center;
-      perspective: 1000px;
+      perspective: 1200px;
+      padding: 0;
     }
   }
 
   &__hologram-container {
-    width: 300px;
-    height: 300px;
     position: relative;
-    animation: hologram-float 6s infinite ease-in-out;
-    
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+
+    @include respond-to($mobile) {
+      width: 280px;
+      height: 280px;
+    }
+
+    @include respond-to($tablet) {
+      width: 320px;
+      height: 320px;
+    }
+
     @include respond-to($laptop) {
       width: 350px;
+      height: 350px;
     }
-    
+
     @include respond-to($desktop) {
       width: 400px;
       height: 400px;
     }
   }
 
+  &__hologram-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    animation: hologram-float 8s ease-in-out infinite;
+    box-shadow: 
+      0 0 40px rgba($primary, 0.4),
+      inset 0 0 40px rgba($primary, 0.2);
+  }
+
   &__profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
     position: relative;
     z-index: 2;
-    // filter: contrast(110%) brightness(110%);
+    filter: 
+      contrast(115%) 
+      brightness(105%) 
+      saturate(110%) 
+      drop-shadow(0 0 10px rgba($primary, 0.5));
+    transform: translateZ(30px);
+    border-radius: 50%;
   }
 
   &__hologram-effect {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba($primary, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle at center, 
+      rgba($primary, 0.15) 0%, 
+      transparent 65%
+    );
     box-shadow: 
-      0 0 60px rgba($primary, 0.3),
+      0 0 80px rgba($primary, 0.5),
       inset 0 0 60px rgba($primary, 0.3);
     z-index: 1;
-    animation: hologram-pulse 3s infinite alternate;
+    animation: 
+      hologram-pulse 4s infinite alternate,
+      hologram-drift 15s infinite linear;
   }
 
   &__hologram-grid {
@@ -338,13 +385,87 @@ $desktop: 1440px;
     width: 120%;
     height: 120%;
     background-image: 
-      radial-gradient(circle at center, transparent 95%, rgba($primary, 0.1) 100%),
-      linear-gradient(0deg, transparent 49%, rgba($primary, 0.1) 50%, transparent 51%),
-      linear-gradient(90deg, transparent 49%, rgba($primary, 0.1) 50%, transparent 51%);
-    background-size: 50px 50px;
+      radial-gradient(
+        circle at center, 
+        transparent 94%, 
+        rgba($primary, 0.15) 95%, 
+        transparent 96%
+      ),
+      linear-gradient(
+        0deg, 
+        transparent 48%, 
+        rgba($primary, 0.15) 49%, 
+        rgba($primary, 0.15) 51%, 
+        transparent 52%
+      ),
+      linear-gradient(
+        90deg, 
+        transparent 48%, 
+        rgba($primary, 0.15) 49%, 
+        rgba($primary, 0.15) 51%, 
+        transparent 52%
+      );
+    background-size: 60px 60px;
     z-index: 3;
-    opacity: 0.5;
-    animation: hologram-rotate 20s infinite linear;
+    opacity: 0.7;
+    animation: hologram-rotate 25s infinite linear reverse;
+    mix-blend-mode: overlay;
+  }
+
+  // Keyframe Animations
+  @keyframes hologram-float {
+    0%, 100% { 
+      transform: 
+        translateY(0) 
+        rotateX(0deg) 
+        rotateY(0deg);
+    }
+    25% { 
+      transform: 
+        translateY(-15px) 
+        rotateX(3deg) 
+        rotateY(5deg);
+    }
+    50% { 
+      transform: 
+        translateY(0) 
+        rotateX(0deg) 
+        rotateY(-5deg);
+    }
+    75% { 
+      transform: 
+        translateY(-10px) 
+        rotateX(-3deg) 
+        rotateY(0deg);
+    }
+  }
+
+  @keyframes hologram-pulse {
+    0% { 
+      opacity: 0.6;
+      box-shadow: 
+        0 0 60px rgba($primary, 0.4),
+        inset 0 0 50px rgba($primary, 0.2);
+    }
+    100% { 
+      opacity: 0.9;
+      box-shadow: 
+        0 0 100px rgba($primary, 0.6),
+        inset 0 0 80px rgba($primary, 0.4);
+    }
+  }
+
+  @keyframes hologram-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes hologram-drift {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    60% { transform: translate(-5px, -5px); }
+    80% { transform: translate(5px, 5px); }
   }
 
   &__scroll-indicator {
