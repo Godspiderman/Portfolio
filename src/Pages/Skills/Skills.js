@@ -8,15 +8,14 @@ import {
   SiHtml5,
   SiCss3,
   SiVercel,
-  SiVisualstudiocode,
   SiSass,
-  SiMaterialui
 } from 'react-icons/si';
+import { FaDatabase } from "react-icons/fa6";
+import { SiAmazonapigateway } from "react-icons/si";
 
 const skillsData = [
   { 
     name: 'Frontend', 
-    icon: <FaReact />,
     description: 'Modern web development technologies for building interactive user interfaces',
     skills: [
       { 
@@ -24,69 +23,68 @@ const skillsData = [
         level: 92,
         description: 'Building component-based UIs with hooks, context API, and performance optimization',
         projects: '12 production applications',
-        icon: <FaReact />
+        icon: <FaReact color="#61DAFB" />  // React blue
       },
       { 
         name: 'Next.js', 
         level: 88,
         description: 'Developing SSR/SSG applications with optimized performance and SEO',
         projects: '6 large-scale projects',
-        icon: <SiNextdotjs />
+        icon: <SiNextdotjs color="#000000" />  // Next.js black
       },
       { 
         name: 'TypeScript', 
         level: 85,
         description: 'Implementing type-safe JavaScript for scalable application development',
         projects: '8 typed codebases',
-        icon: <SiTypescript />
+        icon: <SiTypescript color="#3178C6" />  // TypeScript blue
       },
       { 
         name: 'JavaScript', 
         level: 90,
         description: 'Core language expertise with modern ES6+ features and patterns',
         projects: '15+ projects',
-        icon: <SiJavascript />
+        icon: <SiJavascript color="#F7DF1E" />  // JavaScript yellow
       },
       { 
         name: 'HTML5', 
         level: 95,
         description: 'Semantic markup and accessibility-focused web development',
         projects: 'All web projects',
-        icon: <SiHtml5 />
+        icon: <SiHtml5 color="#E34F26" />  // HTML5 orange
       },
       { 
         name: 'CSS3', 
         level: 93,
         description: 'Modern styling with Flexbox, Grid, animations and responsive design',
         projects: 'All web projects',
-        icon: <SiCss3 />
+        icon: <SiCss3 color="#1572B6" />  // CSS3 blue
       },
       { 
         name: 'Sass', 
         level: 90,
         description: 'CSS preprocessor with mixins, variables, and nested rules for maintainable styles',
         projects: '10+ projects',
-        icon: <SiSass />
+        icon: <SiSass color="#CC6699" />  // Sass pink
       },
       { 
         name: 'Material UI', 
         level: 85,
         description: 'Building responsive interfaces with React component library and custom themes',
         projects: '7 projects',
-        icon: <FaReact />
+        icon: <FaReact color="#0081CB" />  // Material UI blue
       },
       { 
         name: 'Responsive Design', 
         level: 94,
         description: 'Creating fluid layouts that adapt to all screen sizes and devices',
         projects: 'All web projects',
-        icon: <SiCss3 />
+        icon: <SiCss3 color="#1572B6" />  // CSS3 blue
       },
     ]
   },
   {
     name: 'Tools & APIs',
-    icon: <FaFigma />,
     description: 'Essential development tools and API integration capabilities',
     skills: [
       { 
@@ -94,42 +92,42 @@ const skillsData = [
         level: 90,
         description: 'Version control and collaborative development workflows',
         projects: '20+ repositories',
-        icon: <FaGitAlt />
+        icon: <FaGitAlt color="#F05032" />  // Git orange
       },
       { 
         name: 'VS Code', 
         level: 95,
         description: 'Customized development environment with productivity extensions',
         projects: 'Primary editor for all projects',
-        icon: <SiVercel />
+        icon: <SiVercel color="#007ACC" />  // VS Code blue
       },
       { 
         name: 'Figma', 
         level: 85,
         description: 'UI/UX design collaboration and component handoff',
         projects: '4 design systems',
-        icon: <FaFigma />
+        icon: <FaFigma color="#F24E1E" />  // Figma orange
       },
       { 
         name: 'Vercel', 
         level: 88,
         description: 'Cloud platform for deploying and monitoring web applications',
         projects: '8 deployed projects',
-        icon: <SiVercel />
+        icon: <SiVercel color="#000000" />  // Vercel black
       },
       { 
         name: 'API Integration', 
         level: 87,
         description: 'Connecting frontend applications with backend services and third-party APIs',
         projects: '9 applications',
-        icon: <SiJavascript />
+        icon: <SiAmazonapigateway color="#F7DF1E" />  // JavaScript yellow
       },
       { 
         name: 'REST API', 
         level: 86,
         description: 'Designing and consuming RESTful APIs with proper authentication and error handling',
         projects: '5 backend integrations',
-        icon: <SiNextdotjs />
+        icon: <FaDatabase color="#000000" />  // Next.js black
       },
     ]
   }

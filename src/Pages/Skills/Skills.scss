@@ -478,7 +478,8 @@ $card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       color: $text;
       line-height: 1.6;
       margin-bottom: 1.5rem;
-      font-size: 0.95rem;
+      font-size: 0.90rem;
+      font-weight: 600;
 
       @include respond(desktop) {
         font-size: 0.925rem;

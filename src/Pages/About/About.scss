@@ -20,7 +20,7 @@ $desktop: 1440px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   backface-visibility: hidden;
-  
+
   &:hover {
     transform: translateY(-5px) scale(1.01);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -44,7 +44,6 @@ $desktop: 1440px;
 .about {
   padding: 2rem 1rem;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-  // background-color: $light-color;
   position: relative;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
@@ -63,7 +62,7 @@ $desktop: 1440px;
       position: relative;
       display: inline-block;
       letter-spacing: -0.5px;
-      
+
       @include respond-to($tablet) {
         font-size: 2.5rem;
       }
@@ -105,13 +104,24 @@ $desktop: 1440px;
       position: relative;
       padding: 0 1rem;
 
+      @include respond-to($mobile) {
+        font-size: 0.95rem;
+        padding: 0;
+        text-align: justify;
+
+      }
+
       @include respond-to($tablet) {
         font-size: 1.2rem;
         padding: 0;
+        text-align: center;
+
       }
 
       @include respond-to($laptop) {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
+        text-align: center;
+
       }
     }
 
@@ -127,6 +137,7 @@ $desktop: 1440px;
       .highlight-text {
         font-size: 1rem;
         line-height: 1.7;
+        font-weight: 600;
         color: $text-color;
         margin: 0;
         font-style: italic;
@@ -157,7 +168,7 @@ $desktop: 1440px;
   .tech-stack__category {
     @include card-effect;
     padding: 2rem;
-    
+
     h3 {
       font-size: 1.3rem;
       font-weight: 700;
@@ -168,7 +179,7 @@ $desktop: 1440px;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      
+
       .title-icon {
         font-size: 1.2em;
       }
@@ -197,11 +208,11 @@ $desktop: 1440px;
     border: 1px solid rgba(0, 0, 0, 0.03);
     cursor: default;
     transition: all 0.2s ease;
-    
+
     &:hover {
       background: rgba($primary-color, 0.03);
       transform: translateX(5px);
-      
+
       .tech-icon {
         transform: scale(1.15);
       }
@@ -217,7 +228,7 @@ $desktop: 1440px;
     justify-content: center;
     font-size: 1.25rem;
     transition: transform 0.2s ease;
-    
+
     svg {
       width: 100%;
       height: 100%;
@@ -229,7 +240,7 @@ $desktop: 1440px;
     font-weight: 500;
     color: $text-color;
     line-height: 1.4;
-    
+
     @include respond-to($tablet) {
       font-size: 1.05rem;
     }
