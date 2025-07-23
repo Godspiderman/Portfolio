@@ -4,6 +4,8 @@ import contractionImage from '../../Images/Screenshot 2025-07-15 130235.png';
 import Petshop from '../../Images/Screenshot 2025-07-15 125037.png';
 import Hospital from '../../Images/Screenshot 2025-07-15 125150.png';
 import HOA from '../../Images/Screenshot 2025-07-15 130049.png';
+import kustamee from '../../Images/kustamee.png';
+import wright from '../../Images/wright.png';
 import { FaExternalLinkAlt, FaCode, FaMobileAlt, FaTabletAlt, FaLaptop, FaDesktop } from 'react-icons/fa';
 
 const Projects = () => {
@@ -36,6 +38,35 @@ const Projects = () => {
       link: "https://petapp-six.vercel.app/"
     },
     {
+      title: "T-Shirt Customizer",
+      tech: "Next JS",
+      description: "Custom t-shirt design platform with intuitive interface and responsive layout.",
+      features: [
+        "Product customization options",
+        "Mobile-first design",
+        "Fast page transitions",
+        "Clean user interface",
+        "Responsive image handling"
+      ],
+      image: kustamee,
+      link: "https://tshirts-teal.vercel.app/"
+    },
+    {
+      title: "Wrights",
+      tech: "Next JS",
+      description: "Corporate website focusing on behavioral change solutions with interactive elements.",
+      features: [
+        "Clean, professional design",
+        "Interactive call-to-action sections",
+        "Responsive across all devices",
+        "Performance optimized",
+        "Modern UI components"
+      ],
+      image: wright,
+      link: "https://wrightsn.vercel.app/"
+    },
+
+    {
       title: "Hospital Booking",
       tech: "Next JS",
       description: "Comprehensive hospital web application with appointment booking and payments.",
@@ -50,7 +81,7 @@ const Projects = () => {
     },
     {
       title: "HOA Management",
-      tech: "React",
+      tech: "React JS",
       description: "Homeowners Association management system with booking and reporting.",
       features: [
         "Amenity booking system",
@@ -84,11 +115,11 @@ const Projects = () => {
             <FaDesktop title="Desktop optimized" />
           </div>
         </div>
-        
+
         <div className="projects-grid">
           {projects.map((project, index) => (
             <div className="project-card" key={index}>
-              <div 
+              <div
                 className={`project-image ${!project.link ? 'no-link' : ''}`}
                 onClick={() => handleImageClick(project.link)}
                 style={{ cursor: project.link ? 'pointer' : 'default' }}
@@ -102,7 +133,7 @@ const Projects = () => {
                   </div>
                 )}
               </div>
-              
+
               <div className="project-content">
                 <div className="project-header">
                   <h2 className="project-title">{project.title}</h2>
@@ -112,9 +143,9 @@ const Projects = () => {
                     </a>
                   )}
                 </div>
-                
+
                 <p className="project-description">{project.description}</p>
-                
+
                 <div className="project-features">
                   <h3>Key Features <FaCode /></h3>
                   <ul>
